@@ -1,0 +1,17 @@
+enclave {
+    from "sgx_tstdc.edl" import *;
+
+    trusted {
+        /* define ECALLs here. */
+		public int init();
+		//public int load([in, size=len] char* buff, size_t len);
+		public int sign([in, size=len] char* message, size_t len, [out, size=sig_len] void* buff, size_t sig_len);
+		public int verify([in, size=len] char* message, size_t len, [in, size=sig_len] void* buff, size_t sig_len);
+		public int close();
+    };
+
+    untrusted {
+        /* define OCALLs here. */
+
+    };
+};
